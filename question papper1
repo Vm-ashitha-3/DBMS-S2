@@ -1,0 +1,744 @@
+> use ash
+switched to db ash
+> db.createCollection("product")
+{ "ok" : 1 }
+> db.product.insert({pid:1,name:"anu",price:"100",category:"homeappl",quantity:"5"})
+WriteResult({ "nInserted" : 1 })
+> db.product.insert({pid:2,name:"manu",price:"80",category:"homeappl",quantity:"10"})
+WriteResult({ "nInserted" : 1 })
+> db.product.insert({pid:2,name:"soap",price:"180",category:"homeappl",quantity:"15"})
+WriteResult({ "nInserted" : 1 })
+> db.product.update({name:"anu"},{$set:{name:"shampoo"}}
+...
+...
+> db.product.update({name:"anu"},{$set:{name:"shampoo"}}
+...
+...
+> db.product.update({name:"anu"},{$set:{name:"shampoo"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.update({name:"manu"},{$set:{name:"bed"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.update({pid:"2"},{$set:{pid:"3"}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.product.find()
+{ "_id" : ObjectId("668d0f7ec07e26af047e911d"), "pid" : 1, "name" : "shampoo", "price" : "100", "category" : "homeappl", "quantity" : "5" }
+{ "_id" : ObjectId("668d104ec07e26af047e911e"), "pid" : 2, "name" : "bed", "price" : "80", "category" : "homeappl", "quantity" : "10" }
+{ "_id" : ObjectId("668d1076c07e26af047e911f"), "pid" : 2, "name" : "soap", "price" : "180", "category" : "homeappl", "quantity" : "15" }
+> db.product.update({name:"soap"},{$set:{pid:"3"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.find()
+{ "_id" : ObjectId("668d0f7ec07e26af047e911d"), "pid" : 1, "name" : "shampoo", "price" : "100", "category" : "homeappl", "quantity" : "5" }
+{ "_id" : ObjectId("668d104ec07e26af047e911e"), "pid" : 2, "name" : "bed", "price" : "80", "category" : "homeappl", "quantity" : "10" }
+{ "_id" : ObjectId("668d1076c07e26af047e911f"), "pid" : "3", "name" : "soap", "price" : "180", "category" : "homeappl", "quantity" : "15" }
+> db.product.insert({pid:4,name:"washingmachine",price:"2000",category:"accessories",quantity:"7"})
+WriteResult({ "nInserted" : 1 })
+> db.product.insert({pid:5,name:"chain",price:"20000",category:"accessories",quantity:"17"})
+WriteResult({ "nInserted" : 1 })
+> db.product.find()
+{ "_id" : ObjectId("668d0f7ec07e26af047e911d"), "pid" : 1, "name" : "shampoo", "price" : "100", "category" : "homeappl", "quantity" : "5" }
+{ "_id" : ObjectId("668d104ec07e26af047e911e"), "pid" : 2, "name" : "bed", "price" : "80", "category" : "homeappl", "quantity" : "10" }
+{ "_id" : ObjectId("668d1076c07e26af047e911f"), "pid" : "3", "name" : "soap", "price" : "180", "category" : "homeappl", "quantity" : "15" }
+{ "_id" : ObjectId("668d1580c07e26af047e9120"), "pid" : 4, "name" : "washingmachine", "price" : "2000", "category" : "accessories", "quantity" : "7" }
+{ "_id" : ObjectId("668d15b5c07e26af047e9121"), "pid" : 5, "name" : "chain", "price" : "20000", "category" : "accessories", "quantity" : "17" }
+> db.product.find().pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : "100",
+        "category" : "homeappl",
+        "quantity" : "5"
+}
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "pid" : 2,
+        "name" : "bed",
+        "price" : "80",
+        "category" : "homeappl",
+        "quantity" : "10"
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : "180",
+        "category" : "homeappl",
+        "quantity" : "15"
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : "2000",
+        "category" : "accessories",
+        "quantity" : "7"
+}
+{
+        "_id" : ObjectId("668d15b5c07e26af047e9121"),
+        "pid" : 5,
+        "name" : "chain",
+        "price" : "20000",
+        "category" : "accessories",
+        "quantity" : "17"
+}
+> db.product.find().sort({name:1}).pretty
+function() {
+    this._prettyShell = true;
+    return this;
+}
+> db.product.find().sort({name:1}).pretty()
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "pid" : 2,
+        "name" : "bed",
+        "price" : "80",
+        "category" : "homeappl",
+        "quantity" : "10"
+}
+{
+        "_id" : ObjectId("668d15b5c07e26af047e9121"),
+        "pid" : 5,
+        "name" : "chain",
+        "price" : "20000",
+        "category" : "accessories",
+        "quantity" : "17"
+}
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : "100",
+        "category" : "homeappl",
+        "quantity" : "5"
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : "180",
+        "category" : "homeappl",
+        "quantity" : "15"
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : "2000",
+        "category" : "accessories",
+        "quantity" : "7"
+}
+> db.product.find({},{name:1,price:1})..pretty()
+uncaught exception: SyntaxError: missing name after . operator :
+@(shell):1:37
+> db.product.find({},{name:1,price:1}).pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "name" : "shampoo",
+        "price" : "100"
+}
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "name" : "bed",
+        "price" : "80"
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "name" : "soap",
+        "price" : "180"
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "name" : "washingmachine",
+        "price" : "2000"
+}
+{
+        "_id" : ObjectId("668d15b5c07e26af047e9121"),
+        "name" : "chain",
+        "price" : "20000"
+}
+> db.product.find({},{name:1,id:0,price:1}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "Cannot do exclusion on field id in inclusion projection",
+        "code" : 31254,
+        "codeName" : "Location31254"
+}
+> db.product.find({},{name:1,_id:0,price:1}).pretty()
+{ "name" : "shampoo", "price" : "100" }
+{ "name" : "bed", "price" : "80" }
+{ "name" : "soap", "price" : "180" }
+{ "name" : "washingmachine", "price" : "2000" }
+{ "name" : "chain", "price" : "20000" }
+> db.product.find({category:"homeappl"},
+...
+...
+> db.product.find({category:"homeappl"})
+{ "_id" : ObjectId("668d0f7ec07e26af047e911d"), "pid" : 1, "name" : "shampoo", "price" : "100", "category" : "homeappl", "quantity" : "5" }
+{ "_id" : ObjectId("668d104ec07e26af047e911e"), "pid" : 2, "name" : "bed", "price" : "80", "category" : "homeappl", "quantity" : "10" }
+{ "_id" : ObjectId("668d1076c07e26af047e911f"), "pid" : "3", "name" : "soap", "price" : "180", "category" : "homeappl", "quantity" : "15" }
+> db.product.find({price:{$gt:100}}).pretty()
+>
+>
+>
+> db.product.find({price:{$gt:100}}).pretty()
+> {
+...
+...
+> db.product.find({price:{$gt:100}}).pretty()
+> db.product.find({price:{$gt:80}}).pretty()
+> db.product.find({price:{$gt:80}})
+> db.product.find({price:{$gt:"80"}}).pretty()
+> db.product.find({category:"homeappl"},{$set:{price:8000}})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "FieldPath field names may not start with '$'. Consider using $getField or $setField.",
+        "code" : 16410,
+        "codeName" : "Location16410"
+}
+> db.product.update({category:"homeappl"},{$set:{price:8000}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.find().pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : "5"
+}
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "pid" : 2,
+        "name" : "bed",
+        "price" : "80",
+        "category" : "homeappl",
+        "quantity" : "10"
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : "180",
+        "category" : "homeappl",
+        "quantity" : "15"
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : "2000",
+        "category" : "accessories",
+        "quantity" : "7"
+}
+{
+        "_id" : ObjectId("668d15b5c07e26af047e9121"),
+        "pid" : 5,
+        "name" : "chain",
+        "price" : "20000",
+        "category" : "accessories",
+        "quantity" : "17"
+}
+> db.product.find({quantity:{$lt:2}}).pretty()
+> db.product.find({quantity:{$lt:17}}).pretty()
+> db.product.remove({price:}}).pretty()
+uncaught exception: SyntaxError: expected expression, got '}' :
+@(shell):1:25
+> db.product.remove({price:{$lt:180}})
+WriteResult({ "nRemoved" : 0 })
+> db.product.find().pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : "5"
+}
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "pid" : 2,
+        "name" : "bed",
+        "price" : "80",
+        "category" : "homeappl",
+        "quantity" : "10"
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : "180",
+        "category" : "homeappl",
+        "quantity" : "15"
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : "2000",
+        "category" : "accessories",
+        "quantity" : "7"
+}
+{
+        "_id" : ObjectId("668d15b5c07e26af047e9121"),
+        "pid" : 5,
+        "name" : "chain",
+        "price" : "20000",
+        "category" : "accessories",
+        "quantity" : "17"
+}
+> db.product.find({price:{$lt:2000}})
+> db.product.find({$sort:[{category:"homeappl"},{category:"accessories"}]}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown top level operator: $sort. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.product.find({$or:[{category:"homeappl"},{category:"accessories"}]}).pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : "5"
+}
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "pid" : 2,
+        "name" : "bed",
+        "price" : "80",
+        "category" : "homeappl",
+        "quantity" : "10"
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : "180",
+        "category" : "homeappl",
+        "quantity" : "15"
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : "2000",
+        "category" : "accessories",
+        "quantity" : "7"
+}
+{
+        "_id" : ObjectId("668d15b5c07e26af047e9121"),
+        "pid" : 5,
+        "name" : "chain",
+        "price" : "20000",
+        "category" : "accessories",
+        "quantity" : "17"
+}
+> db.product.update({quantity:"7"},{$set:{quantity:8}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.find().pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : "5"
+}
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "pid" : 2,
+        "name" : "bed",
+        "price" : "80",
+        "category" : "homeappl",
+        "quantity" : "10"
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : "180",
+        "category" : "homeappl",
+        "quantity" : "15"
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : "2000",
+        "category" : "accessories",
+        "quantity" : 8
+}
+{
+        "_id" : ObjectId("668d15b5c07e26af047e9121"),
+        "pid" : 5,
+        "name" : "chain",
+        "price" : "20000",
+        "category" : "accessories",
+        "quantity" : "17"
+}
+> db.product.update({quantity:"17"},{$set:{quantity:18}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.update({quantity:"15"},{$set:{quantity:15}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.update({quantity:"10"},{$set:{quantity:10}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.update({quantity:"5"},{$set:{quantity:5}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.find({quantity:{$lt:10}}).pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : 5
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : "2000",
+        "category" : "accessories",
+        "quantity" : 8
+}
+> db.product.find().pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : 5
+}
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "pid" : 2,
+        "name" : "bed",
+        "price" : "80",
+        "category" : "homeappl",
+        "quantity" : 10
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : "180",
+        "category" : "homeappl",
+        "quantity" : 15
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : "2000",
+        "category" : "accessories",
+        "quantity" : 8
+}
+{
+        "_id" : ObjectId("668d15b5c07e26af047e9121"),
+        "pid" : 5,
+        "name" : "chain",
+        "price" : "20000",
+        "category" : "accessories",
+        "quantity" : 18
+}
+> db.product.update({price:"20000"},{price:20000}}).pretty()
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:47
+> db.product.update({price:"20000"},{$set:{price:20000}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.update({price:"2000"},{$set:{price:2000}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.update({price:"180"},{$set:{price:180}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.update({price:"80"},{$set:{price:80}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.product.find().pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : 5
+}
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "pid" : 2,
+        "name" : "bed",
+        "price" : 80,
+        "category" : "homeappl",
+        "quantity" : 10
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : 180,
+        "category" : "homeappl",
+        "quantity" : 15
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : 2000,
+        "category" : "accessories",
+        "quantity" : 8
+}
+{
+        "_id" : ObjectId("668d15b5c07e26af047e9121"),
+        "pid" : 5,
+        "name" : "chain",
+        "price" : 20000,
+        "category" : "accessories",
+        "quantity" : 18
+}
+> db.product.find({price:{$lt:2000}}).pretty()
+{
+        "_id" : ObjectId("668d104ec07e26af047e911e"),
+        "pid" : 2,
+        "name" : "bed",
+        "price" : 80,
+        "category" : "homeappl",
+        "quantity" : 10
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : 180,
+        "category" : "homeappl",
+        "quantity" : 15
+}
+> db.product.find({name:/s/}).pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : 5
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : 180,
+        "category" : "homeappl",
+        "quantity" : 15
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : 2000,
+        "category" : "accessories",
+        "quantity" : 8
+}
+> db.product.find({name:/^s/}).pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : 5
+}
+{
+        "_id" : ObjectId("668d1076c07e26af047e911f"),
+        "pid" : "3",
+        "name" : "soap",
+        "price" : 180,
+        "category" : "homeappl",
+        "quantity" : 15
+}
+> db.product.find({name:/*sh*/}).pretty()
+uncaught exception: SyntaxError: expected expression, got '}' :
+@(shell):1:28
+> db.product.find({name:/sh/}).pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : 5
+}
+{
+        "_id" : ObjectId("668d1580c07e26af047e9120"),
+        "pid" : 4,
+        "name" : "washingmachine",
+        "price" : 2000,
+        "category" : "accessories",
+        "quantity" : 8
+}
+> db.product.find({name:/^sh/}).pretty()
+{
+        "_id" : ObjectId("668d0f7ec07e26af047e911d"),
+        "pid" : 1,
+        "name" : "shampoo",
+        "price" : 8000,
+        "category" : "homeappl",
+        "quantity" : 5
+}
+> show dbs
+admin     0.000GB
+ash       0.000GB
+ashitha   0.000GB
+config    0.000GB
+employee  0.000GB
+local     0.000GB
+mynewdb   0.000GB
+semo      0.000GB
+> use employee
+switched to db employee
+> db.employee.update({name:"william"},{$set:{year:1800}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.employee.find().pretty()
+{
+        "_id" : ObjectId("668cd1b069894fb96a0c04bb"),
+        "eid" : "e1",
+        "name" : "doe",
+        "age" : 40,
+        "dname" : "engi",
+        "projects" : [
+                {
+                        "pname" : "website",
+                        "members" : [
+                                "alice",
+                                "bob",
+                                "john"
+                        ],
+                        "status" : "inprogress"
+                },
+                {
+                        "pname" : "mobileapp",
+                        "members" : [
+                                "tom",
+                                "jane",
+                                "mike"
+                        ],
+                        "status" : "completed"
+                }
+        ],
+        "year" : 2018
+}
+{
+        "_id" : ObjectId("668cd2ce69894fb96a0c04bc"),
+        "eid" : "e2",
+        "name" : "johnson",
+        "age" : 32,
+        "dname" : "finance",
+        "project" : [
+                {
+                        "pname" : "financial",
+                        "members" : [
+                                "william",
+                                "david"
+                        ],
+                        "status" : "completed"
+                }
+        ],
+        "year" : 2018
+}
+{
+        "_id" : ObjectId("668cd42a69894fb96a0c04bd"),
+        "eid" : "e3",
+        "name" : "emily",
+        "age" : 28,
+        "dname" : "hr",
+        "projects" : [
+                {
+                        "pname" : "onbording",
+                        "members" : [
+                                "sophia",
+                                "robert"
+                        ],
+                        "status" : "inprogress"
+                }
+        ],
+        "year" : 2018
+}
+{
+        "_id" : ObjectId("668cd90769894fb96a0c04be"),
+        "eid" : "e4",
+        "name" : "smith",
+        "age" : 37,
+        "dname" : "sales",
+        "projects" : [
+                {
+                        "pname" : "product",
+                        "members" : [
+                                "mark",
+                                "emily"
+                        ],
+                        "status" : "completed"
+                },
+                {
+                        "pname" : "marketing",
+                        "members" : [
+                                "jane",
+                                "tom"
+                        ],
+                        "status" : "inprogress"
+                }
+        ],
+        "year" : 2018
+}
+{
+        "_id" : ObjectId("668cd9dd69894fb96a0c04bf"),
+        "eid" : "e5",
+        "name" : "william",
+        "age" : 30,
+        "dname" : "hr",
+        "projects" : [
+                {
+                        "pname" : "quality",
+                        "members" : [
+                                "anna",
+                                "sophia",
+                                "james"
+                        ],
+                        "status" : "inprogress"
+                }
+        ],
+        "year" : 1800
+}
+> db.employee.distinct.("dname")
+uncaught exception: SyntaxError: missing name after . operator :
+@(shell):1:21
+> db.employee.distinct("dname")
+[ "engi", "finance", "hr", "sales" ]
+> db.employee.find({name:/^o/})
+> db.employee.find({pname:/^o/})
+> db.employee.find({pname:/^o/}).pretty()
+> db.employee.find({name:/^w/}).pretty()
+{
+        "_id" : ObjectId("668cd9dd69894fb96a0c04bf"),
+        "eid" : "e5",
+        "name" : "william",
+        "age" : 30,
+        "dname" : "hr",
+        "projects" : [
+                {
+                        "pname" : "quality",
+                        "members" : [
+                                "anna",
+                                "sophia",
+                                "james"
+                        ],
+                        "status" : "inprogress"
+                }
+        ],
+        "year" : 1800
+}
+> db.employee.find({$and:[{"projects.members":"tom"}{"project.members":"jane"}]
+... db.employee.find({
+... $and:[
+... {"projects,members":"tom"}
+... {"projects.members":"jane"}
+... ]
+...
