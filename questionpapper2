@@ -1,0 +1,259 @@
+--
+> show dbs
+admin     0.000GB
+ashitha   0.000GB
+config    0.000GB
+employee  0.000GB
+local     0.000GB
+mynewdb   0.000GB
+semo      0.000GB
+> use employee
+switched to db employee
+> show collections
+employee
+ db.employee.drop()
+true
+> use employee
+switched to db employee
+> db.createCollection("employee")
+ db.employee.insert({eid:"e1",name:"doe",age:40,dname:"engi",projects:[{pname:"website",members:["alice","bob","john"],status:"inprogress"},{pname:"mobileapp",members:["tom","jane","mike"],status:"completed"}]})
+Wrdb.employee.insert({eid:"e2",name:"johnson",age:32,dname:"finance",project:[{pname:"financial",members:["william","david"],status:"completed"}]})
+WriteResult({ "nInserted" : 1 })
+> db.employee.find().pretty()
+{
+        "_id" : ObjectId("668cd1b069894fb96a0c04bb"),
+        "eid" : "e1",
+        "name" : "doe",
+        "age" : 40,
+        "dname" : "engi",
+        "projects" : [
+                {
+                        "pname" : "website",
+                        "members" : [
+                                "alice",
+                                "bob",
+                                "john"
+                        ],
+                        "status" : "inprogress"
+                },
+                {
+                        "pname" : "mobileapp",
+                        "members" : [
+                                "tom",
+                                "jane",
+                                "mike"
+                        ],
+                        "status" : "completed"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("668cd2ce69894fb96a0c04bc"),
+        "eid" : "e2",
+        "name" : "johnson",
+        "age" : 32,
+        "dname" : "finance",
+        "project" : [
+                {
+                        "pname" : "financial",
+                        "members" : [
+                                "william",
+                                "david"
+                        ],
+                        "status" : "completed"
+                }
+        ]
+} 
+> db.employee.insert({eid:"e3",name:"emily",age:28,dname:"hr",projects:[{pname:"onbording",members:["sophia","robert"],status:"inprogress"}]})
+Wrdb.employee.insert({eid:"e4",name:"smith",age:37,dname:"sales",projects:[{pname:"product",members:["mark","emily"],status:"completed"},{pname:"marketing",members:["jane","tom"],status:"inprogress"}]})
+Wrdb.employee.insert({eid:"e5",name:"william",age:30,dname:"hr",projects:[{pname:"quality",members:["anna","sophia","james"],status:"inprogress"}]})
+WriteResult({ "nInserted" : 1 })
+> db.employee.find()
+{ "_id" : ObjectId("668cd1b069894fb96a0c04bb"), "eid" : "e1", "name" : "doe", "age" : 40, "dname" : "engi", "projects" : [ { "pname" : "website", "members" : [ "alice", "bob", "john" ], "status" : "inprogress" }, { "pname" : "mobileapp", "members" : [ "tom", "jane", "mike" ], "status" : "completed" } ] }
+{ "_id" : ObjectId("668cd2ce69894fb96a0c04bc"), "eid" : "e2", "name" : "johnson", "age" : 32, "dname" : "finance", "project" : [ { "pname" : "financial", "members" : [ "william", "david" ], "status" : "completed" } ] }
+{ "_id" : ObjectId("668cd42a69894fb96a0c04bd"), "eid" : "e3", "name" : "emily", "age" : 28, "dname" : "hr", "projects" : [ { "pname" : "onbording", "members" : [ "sophia", "robert" ], "status" : "inprogress" } ] }
+{ "_id" : ObjectId("668cd90769894fb96a0c04be"), "eid" : "e4", "name" : "smith", "age" : 37, "dname" : "sales", "projects" : [ { "pname" : "product", "members" : [ "mark", "emily" ], "status" : "completed" }, { "pname" : "marketing", "members" : [ "jane", "tom" ], "status" : "inprogress" } ] }
+{ "_id" : ObjectId("668cd9dd69894fb96a0c04bf"), "eid" : "e5", "name" : "william", "age" : 30, "dname" : "hr", "projects" : [ { "pname" : "quality", "members" : [ "anna", "sophia", "james" ], "status" : "inprogress" } ] }
+> db.employee.find().pretty()
+{
+        "_id" : ObjectId("668cd1b069894fb96a0c04bb"),
+        "eid" : "e1",
+        "name" : "doe",
+        "age" : 40,
+        "dname" : "engi",
+        "projects" : [
+                {
+                        "pname" : "website",
+                        "members" : [
+                                "alice",
+                                "bob",
+                                "john"
+                        ],
+                        "status" : "inprogress"
+                },
+                {
+                        "pname" : "mobileapp",
+                        "members" : [
+                                "tom",
+                                "jane",
+                                "mike"
+                        ],
+                        "status" : "completed"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("668cd2ce69894fb96a0c04bc"),
+        "eid" : "e2",
+        "name" : "johnson",
+        "age" : 32,
+        "dname" : "finance",
+        "project" : [
+                {
+                        "pname" : "financial",
+                        "members" : [
+                                "william",
+                                "david"
+                        ],
+                        "status" : "completed"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("668cd42a69894fb96a0c04bd"),
+        "eid" : "e3",
+        "name" : "emily",
+        "age" : 28,
+        "dname" : "hr",
+        "projects" : [
+                {
+                        "pname" : "onbording",
+                        "members" : [
+                                "sophia",
+                                "robert"
+                        ],
+                        "status" : "inprogress"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("668cd90769894fb96a0c04be"),
+        "eid" : "e4",
+        "name" : "smith",
+        "age" : 37,
+        "dname" : "sales",
+        "projects" : [
+                {
+                        "pname" : "product",
+                        "members" : [
+                                "mark",
+                                "emily"
+                        ],
+                        "status" : "completed"
+                },
+                {
+                        "pname" : "marketing",
+                        "members" : [
+                                "jane",
+                                "tom"
+                        ],
+                        "status" : "inprogress"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("668cd9dd69894fb96a0c04bf"),
+        "eid" : "e5",
+        "name" : "william",
+        "age" : 30,
+        "dname" : "hr",
+        "projects" : [
+                {
+                        "pname" : "quality",
+                        "members" : [
+                                "anna",
+                                "sophia",
+                                "james"
+                        ],
+                        "status" : "inprogress"
+                }
+        ]
+}
+
+> db.employee.updateMany({},{$set:{year:2018}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 4 }
+> db.employee.find()
+{ "_id" : ObjectId("668cd1b069894fb96a0c04bb"), "eid" : "e1", "name" : "doe", "age" : 40, "dname" : "engi", "projects" : [ { "pname" : "website", "members" : [ "alice", "bob", "john" ], "status" : "inprogress" }, { "pname" : "mobileapp", "members" : [ "tom", "jane", "mike" ], "status" : "completed" } ], "year" : 2018 }
+{ "_id" : ObjectId("668cd2ce69894fb96a0c04bc"), "eid" : "e2", "name" : "johnson", "age" : 32, "dname" : "finance", "project" : [ { "pname" : "financial", "members" : [ "william", "david" ], "status" : "completed" } ], "year" : 2018 }
+{ "_id" : ObjectId("668cd42a69894fb96a0c04bd"), "eid" : "e3", "name" : "emily", "age" : 28, "dname" : "hr", "projects" : [ { "pname" : "onbording", "members" : [ "sophia", "robert" ], "status" : "inprogress" } ], "year" : 2018 }
+{ "_id" : ObjectId("668cd90769894fb96a0c04be"), "eid" : "e4", "name" : "smith", "age" : 37, "dname" : "sales", "projects" : [ { "pname" : "product", "members" : [ "mark", "emily" ], "status" : "completed" }, { "pname" : "marketing", "members" : [ "jane", "tom" ], "status" : "inprogress" } ], "year" : 2018 }
+{ "_id" : ObjectId("668cd9dd69894fb96a0c04bf"), "eid" : "e5", "name" : "william", "age" : 30, "dname" : "hr", "projects" : [ { "pname" : "quality", "members" : [ "anna", "sophia", "james" ], "status" : "inprogress" } ], "year" : 2018 }
+
+> db.employee.remove({age:"age"})
+WriteResult({ "nRemoved" : 0 })
+
+> db.employee.updateMany({name:"william"},{$set:{year:800}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.employee.find()
+{ "_id" : ObjectId("668cd1b069894fb96a0c04bb"), "eid" : "e1", "name" : "doe", "age" : 40, "dname" : "engi", "projects" : [ { "pname" : "website", "members" : [ "alice", "bob", "john" ], "status" : "inprogress" }, { "pname" : "mobileapp", "members" : [ "tom", "jane", "mike" ], "status" : "completed" } ], "year" : 2018 }
+{ "_id" : ObjectId("668cd2ce69894fb96a0c04bc"), "eid" : "e2", "name" : "johnson", "age" : 32, "dname" : "finance", "project" : [ { "pname" : "financial", "members" : [ "william", "david" ], "status" : "completed" } ], "year" : 2018 }
+{ "_id" : ObjectId("668cd42a69894fb96a0c04bd"), "eid" : "e3", "name" : "emily", "age" : 28, "dname" : "hr", "projects" : [ { "pname" : "onbording", "members" : [ "sophia", "robert" ], "status" : "inprogress" } ], "year" : 2018 }
+{ "_id" : ObjectId("668cd90769894fb96a0c04be"), "eid" : "e4", "name" : "smith", "age" : 37, "dname" : "sales", "projects" : [ { "pname" : "product", "members" : [ "mark", "emily" ], "status" : "completed" }, { "pname" : "marketing", "members" : [ "jane", "tom" ], "status" : "inprogress" } ], "year" : 2018 }
+{ "_id" : ObjectId("668cd9dd69894fb96a0c04bf"), "eid" : "e5", "name" : "william", "age" : 30, "dname" : "hr", "projects" : [ { "pname" : "quality", "members" : [ "anna", "sophia", "james" ], "status" : "inprogress" } ], "year" : 800 }
+> db.employee.distinct('dname')
+[ "engi", "finance", "hr", "sales" ]
+
+
+>
+> db.employee.find({name:{$regex:"o"}}).pretty()
+{
+        "_id" : ObjectId("668cd1b069894fb96a0c04bb"),
+        "eid" : "e1",
+        "name" : "doe",
+        "age" : 40,
+        "dname" : "engi",
+        "projects" : [
+                {
+                        "pname" : "website",
+                        "members" : [
+                                "alice",
+                                "bob",
+                                "john"
+                        ],
+                        "status" : "inprogress"
+                },
+                {
+                        "pname" : "mobileapp",
+                        "members" : [
+                                "tom",
+                                "jane",
+                                "mike"
+                        ],
+                        "status" : "completed"
+                }
+        ],
+        "year" : 2018
+}
+{
+        "_id" : ObjectId("668cd2ce69894fb96a0c04bc"),
+        "eid" : "e2",
+        "name" : "johnson",
+        "age" : 32,
+        "dname" : "finance",
+        "project" : [
+                {
+                        "pname" : "financial",
+                        "members" : [
+                                "william",
+                                "david"
+                        ],
+                        "status" : "completed"
+                }
+        ],
+        "year" : 2018
+}
+
+
+
+
