@@ -1,0 +1,150 @@
+
+
+
+
+
+
+mysql> use ash;
+Database changed
+mysql> create table phonebook(pname varchar(30),mobileno varchar(30));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into phonebook values("ashitha","9995294757");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into phonebook values("anusha","9895294757");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into phonebook values("anu","8895294757");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into phonebook values("anusree","7895294757");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into phonebook values("athira","7899294757");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into phonebook values("anurag","7899299757");
+Query OK, 1 row affected (0.01 sec)
+mysql> select*from phonebook;
++---------+------------+
+| pname   | mobileno   |
++---------+------------+
+| ashitha | 9995294757 |
+| anusha  | 9895294757 |
+| anu     | 8895294757 |
+| anusree | 7895294757 |
+| athira  | 7899294757 |
+| anurag  | 7899299757 |
++---------+------------+
+6 rows in set (0.00 sec)
+
+mysql> create table delphonebook(pname varchar(30),mobileno varchar(40),modified_date date);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc phonebook;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| pname    | varchar(30) | YES  |     | NULL    |       |
+| mobileno | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.03 sec)
+
+mysql> desc delphonebook;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| pname         | varchar(30) | YES  |     | NULL    |       |
+| mobileno      | varchar(40) | YES  |     | NULL    |       |
+| modified_date | date        | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> create trigger triggername after delete on phonebook for each row
+    -> begin
+    -> insert into delphonebook(pname,mobileno,modified_date)values(OLD.pname,OLD.mobileno,sysdate());
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> delete from phonebook where pname="anu";
+    -> select*from phonebook;
+    ->
+
+    -> //
+Query OK, 1 row affected (0.01 sec)
+
++---------+------------+
+| pname   | mobileno   |
++---------+------------+
+| ashitha | 9995294757 |
+| anusha  | 9895294757 |
+| anusree | 7895294757 |
+| athira  | 7899294757 |
+| anurag  | 7899299757 |
++---------+------------+
+5 rows in set (0.01 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select*from delphonebook;
+    -> //
++-------+------------+---------------+
+| pname | mobileno   | modified_date |
++-------+------------+---------------+
+| anu   | 8895294757 | 2024-07-02    |
++-------+------------+---------------+
+1 row in set (0.00 sec)
+mysql> DELIMITER //
+mysql> create trigger triggername after update on phonebook for each row
+    -> begin
+    -> insert into delphonebook(pname,mobileno,modified_date)values(OLD.pname,OLD.mobileno,sysdate());
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.01 sec)
+
+
+if there alreadt exist triggering you can drop use to delete the triggerin g
+  -> //
+ERROR 1359 (HY000): Trigger already exists
+mysql> DROP TRIGGER IF EXISTS triggername;
+    -> //
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> update phonebook set pname="abhi" where pname="athira";
+    -> select*from delphonebook;
+    -> //
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
++--------+------------+---------------+
+| pname  | mobileno   | modified_date |
++--------+------------+---------------+
+| anu    | 8895294757 | 2024-07-02    |
+| athira | 7899294757 | 2024-07-02    |
++--------+------------+---------------+
+2 rows in set (0.01 sec)
+
+mysql> select*from phonebook;
+    -> //
++---------+------------+
+| pname   | mobileno   |
++---------+------------+
+| ashitha | 9995294757 |
+| anusha  | 9895294757 |
+| anusree | 7895294757 |
+| abhi    | 7899294757 |
+| anurag  | 7899299757 |
++---------+------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+
