@@ -1,0 +1,24 @@
+mysql> create database functions;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> use functions;
+Database changed
+mysql> DELIMITER $$
+mysql> CREATE FUNCTION
+    -> AddTwoNumbers(a INT,b INT)
+    -> returns int
+    -> deterministic
+    -> begin
+    -> return a + b;
+    -> end$$
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DELIMITER ;
+mysql> select AddTwoNumbers(3,2)as
+    -> SUM;
++------+
+| SUM  |
++------+
+|    5 |
++------+
+1 row in set (0.01 sec)
