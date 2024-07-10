@@ -1,0 +1,41 @@
+mysql> insert into customer values('c1','anu','uk','uuuu','manchester');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values('c2','chikku','uae','eee','oman');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values('c3','ash','india','kkkk','kozhikode');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values('c4','ammu','india','mmmm','kannur');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from customer;
++------+--------+---------+---------+------------+
+| id   | name   | country | address | city       |
++------+--------+---------+---------+------------+
+| c1   | anu    | uk      | uuuu    | manchester |
+| c2   | chikku | uae     | eee     | oman       |
+| c3   | ash    | india   | kkkk    | kozhikode  |
+| c4   | ammu   | india   | mmmm    | kannur     |
++------+--------+---------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> create procedure me(IN countryname varchar(40))
+    -> begin
+    -> select name from customer where country = countryname;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CALL me('uk');
+    -> //
++------+
+| name |
++------+
+| anu  |
++------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
