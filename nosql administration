@@ -1,0 +1,196 @@
+db.createUser(
+...  {user:"ash",
+...   pwd:"555",
+...   roles:[{role:"userAdminAnyDatabase",db:"admin"
+...  }
+...  ]
+...  })
+Successfully added user: {
+        "user" : "ash",
+        "roles" : [
+                {
+                        "role" : "userAdminAnyDatabase",
+                        "db" : "admin"
+                }
+        ]
+}
+> db.createUser(
+...  {user:"manu",
+...   pwd:"333",
+...   roles:[{role:"userAdmin",db:"student"
+...  }
+...  ]
+...  })
+Successfully added user: {
+        "user" : "manu",
+        "roles" : [
+                {
+                        "role" : "userAdmin",
+                        "db" : "student"
+                }
+        ]
+}
+> db.createUser(
+...  {user:"saalah",
+...   pwd:"777",
+...   roles:[{role:"readWrite",db:"fff"
+...  }
+...  ]
+...  })
+Successfully added user: {
+        "user" : "saalah",
+        "roles" : [
+                {
+                        "role" : "readWrite",
+                        "db" : "fff"
+                }
+        ]
+}
+> db.getUsers()
+[
+        {
+                "_id" : "test.abhi",
+                "userId" : UUID("b1ea292f-bebd-49a7-aceb-990c5511ec4b"),
+                "user" : "abhi",
+                "db" : "test",
+                "roles" : [
+                        {
+                                "role" : "userAdmin",
+                                "db" : "student"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "test.anu",
+                "userId" : UUID("f2578daf-1a90-4073-8427-ec146cb09801"),
+                "user" : "anu",
+                "db" : "test",
+                "roles" : [
+                        {
+                                "role" : "userAdminAnyDatabase",
+                                "db" : "admin"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "test.ash",
+                "userId" : UUID("a03cbdd0-ca4b-4ec9-8dac-72244d5859a5"),
+                "user" : "ash",
+                "db" : "test",
+                "roles" : [
+                        {
+                                "role" : "userAdminAnyDatabase",
+                                "db" : "admin"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "test.ashalatha",
+                "userId" : UUID("5e28f055-da7a-45b4-aac6-1bf3a56f1448"),
+                "user" : "ashalatha",
+                "db" : "test",
+                "roles" : [
+                        {
+                                "role" : "userAdminAnyDatabase",
+                                "db" : "admin"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "test.manu",
+                "userId" : UUID("4c83a026-7693-4abd-ba21-dd3c1ef0d4a7"),
+                "user" : "manu",
+                "db" : "test",
+                "roles" : [
+                        {
+                                "role" : "userAdmin",
+                                "db" : "student"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "test.saalah",
+                "userId" : UUID("9b06219c-37ce-4b2c-8173-37ba16f27e16"),
+                "user" : "saalah",
+                "db" : "test",
+                "roles" : [
+                        {
+                                "role" : "readWrite",
+                                "db" : "fff"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "test.sana",
+                "userId" : UUID("fb5137e6-a71a-488a-a244-38566b600edb"),
+                "user" : "sana",
+                "db" : "test",
+                "roles" : [
+                        {
+                                "role" : "readWrite",
+                                "db" : "sana"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "test.sreethu",
+                "userId" : UUID("985a25ec-db63-491e-937c-c74788ff36b0"),
+                "user" : "sreethu",
+                "db" : "test",
+                "roles" : [
+                        {
+                                "role" : "readWrite",
+                                "db" : "salah"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "test.wafa",
+                "userId" : UUID("a88ca2b9-32ae-4daa-851f-fdf19ca90137"),
+                "user" : "wafa",
+                "db" : "test",
+                "roles" : [
+                        {
+                                "role" : "userAdmin",
+                                "db" : "student"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        }
+]
+>
