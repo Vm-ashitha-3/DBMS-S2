@@ -1,0 +1,65 @@
+mysql> create database cus;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use cus;
+Database changed
+mysql> create table customer(id varchar(5),name varchar(30),age int,address varchar(50),salary int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into customer values('c1',"ash",25,"karanthur",100000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values('c2',"anu",35,"thrissur",500000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values('c3',"manu",35,"pkd",300000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values('c4',"anusha",35,"kkd",600000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from customer;
++------+--------+------+-----------+--------+
+| id   | name   | age  | address   | salary |
++------+--------+------+-----------+--------+
+| c1   | ash    |   25 | karanthur | 100000 |
+| c2   | anu    |   35 | thrissur  | 500000 |
+| c3   | manu   |   35 | pkd       | 300000 |
+| c4   | anusha |   35 | kkd       | 600000 |
++------+--------+------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> create function totalcus() returns int
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE totalcus int;
+    -> select count(*) into totalcus from customer;
+    -> return totalcus;
+    -> end //
+Query OK, 0 rows affected (0.01 sec)
+
+
+
+
+or
+
+mysql> delimiter //
+mysql> DELIMITER //
+mysql> create function total() returns int
+    -> DETERMINISTIC
+    -> begin
+    -> declare total int;
+    -> select count(*) into total from customer;
+    -> return total;
+    -> end //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select total();
+    -> //
++---------+
+| total() |
++---------+
+|       4 |
++---------+
+1 row in set (0.01 sec)
