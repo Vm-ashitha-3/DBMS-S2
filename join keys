@@ -1,0 +1,138 @@
+mysql> use ash
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_ash |
++---------------+
+| course        |
+| customer      |
+| customers     |
+| delphonebook  |
+| department    |
+| employee      |
+| faculty       |
+| orders        |
+| phonebook     |
+| products      |
+| productsview  |
+| student       |
++---------------+
+12 rows in set (0.10 sec)
+
+mysql> select*from orders;
++---------+-----------+------------+--------------+------------+
+| orderid | ordername | customerid | customername | order_date |
++---------+-----------+------------+--------------+------------+
+| o1      | powder    | c1         | ash          | 2024-05-05 |
+| o2      | bag       | c2         | anusha       | 2024-06-05 |
+| o3      | sunscreen | c3         | anusree      | 2024-06-20 |
+| o4      | sunscreen | c4         | anurag       | 2024-04-20 |
+| o5      | laptop    | c5         | anu          | 2024-10-20 |
++---------+-----------+------------+--------------+------------+
+5 rows in set (0.02 sec)
+
+mysql> select*from products;
++-----------+-------------+---------+
+| productid | productname | orderid |
++-----------+-------------+---------+
+| p1        | powder      | o1      |
+| p2        | sunscreen   | o2      |
+| p3        | bag         | o3      |
+| p4        | shoe        | o4      |
+| p5        | laptop      | o5      |
++-----------+-------------+---------+
+5 rows in set (0.01 sec)
+
+mysql> insert into orders values('o6','mobile','c6','minnu','202
+4-09-10');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into orders values('o7','earbuds','c7','minnu','20
+24-09-20');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from orders;
++---------+-----------+------------+--------------+------------+
+| orderid | ordername | customerid | customername | order_date |
++---------+-----------+------------+--------------+------------+
+| o1      | powder    | c1         | ash          | 2024-05-05 |
+| o2      | bag       | c2         | anusha       | 2024-06-05 |
+| o3      | sunscreen | c3         | anusree      | 2024-06-20 |
+| o4      | sunscreen | c4         | anurag       | 2024-04-20 |
+| o5      | laptop    | c5         | anu          | 2024-10-20 |
+| o6      | mobile    | c6         | minnu        | 2024-09-10 |
+| o7      | earbuds   | c7         | minnu        | 2024-09-20 |
++---------+-----------+------------+--------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select orders.orderid,orders.customerid,products.productn
+ame from orders join products on orders.orderid=products.orderid
+;
++---------+------------+-------------+
+| orderid | customerid | productname |
++---------+------------+-------------+
+| o1      | c1         | powder      |
+| o2      | c2         | sunscreen   |
+| o3      | c3         | bag         |
+| o4      | c4         | shoe        |
+| o5      | c5         | laptop      |
++---------+------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select orders.orderid,orders.customerid,products.productn
+ame from orders left join products on orders.orderid=products.or
+derid;
++---------+------------+-------------+
+| orderid | customerid | productname |
++---------+------------+-------------+
+| o1      | c1         | powder      |
+| o2      | c2         | sunscreen   |
+| o3      | c3         | bag         |
+| o4      | c4         | shoe        |
+| o5      | c5         | laptop      |
+| o6      | c6         | NULL        |
+| o7      | c7         | NULL        |
++---------+------------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> select orders.orderid,orders.customerid,products.productname from orders right join products on orders.orderid=products.o
+rderid;
++---------+------------+-------------+
+| orderid | customerid | productname |
++---------+------------+-------------+
+| o1      | c1         | powder      |
+| o2      | c2         | sunscreen   |
+| o3      | c3         | bag         |
+| o4      | c4         | shoe        |
+| o5      | c5         | laptop      |
++---------+------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select orders.orderid,orders.customerid,products.productn
+ame from orders join products on orders.orderid>products.orderid
+;
++---------+------------+-------------+
+| orderid | customerid | productname |
++---------+------------+-------------+
+| o2      | c2         | powder      |
+| o3      | c3         | powder      |
+| o4      | c4         | powder      |
+| o5      | c5         | powder      |
+| o6      | c6         | powder      |
+| o7      | c7         | powder      |
+| o3      | c3         | sunscreen   |
+| o4      | c4         | sunscreen   |
+| o5      | c5         | sunscreen   |
+| o6      | c6         | sunscreen   |
+| o7      | c7         | sunscreen   |
+| o4      | c4         | bag         |
+| o5      | c5         | bag         |
+| o6      | c6         | bag         |
+| o7      | c7         | bag         |
+| o5      | c5         | shoe        |
+| o6      | c6         | shoe        |
+| o7      | c7         | shoe        |
+| o6      | c6         | laptop      |
+| o7      | c7         | laptop      |
++---------+------------+-------------+
+20 rows in set (0.03 sec)
